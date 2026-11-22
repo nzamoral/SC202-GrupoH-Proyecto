@@ -38,5 +38,11 @@ public class ESPECIALISTA {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
+    
+    // Mostrar nombre del especialista
+    public String mostrarNombre() {
+        String nombreString = "Esp. " + nombre + " " + apellido;
+        
+        return nombreString;
+    }
 }

@@ -3,14 +3,14 @@ package proyecto;
 public class SERVICIO {
     
     // Atributos
-    private String id;
+    private int id;
     private String categoria;
     private String nombre;
     private double costo;
     private ESPECIALISTA especialista; // Objeto de tipo ESPECIALISTA como atributo del servicio
 
     // Constructor
-    public SERVICIO(String id, String categoria, String nombre, double costo, ESPECIALISTA especialista) {
+    public SERVICIO(int id, String categoria, String nombre, double costo, ESPECIALISTA especialista) {
         this.id = id;
         this.categoria = categoria;
         this.nombre = nombre;
@@ -19,11 +19,11 @@ public class SERVICIO {
     }
 
     // Getters y setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,4 +59,15 @@ public class SERVICIO {
         this.especialista = especialista;
     }
 
+    // Mostrar información de servicio
+    public String mostrarInformacion() {
+        String servicioString = categoria + " | ₡" + costo + " | " + especialista.mostrarNombre();
+        
+        return servicioString;
+    }
+    
+    // Mostrar línea de factura (FALTA IMPLEMENTACION)
+    public void mostrarLineaFactura() {
+        return;
+    }
 }

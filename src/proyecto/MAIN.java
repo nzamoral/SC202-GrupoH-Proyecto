@@ -6,6 +6,7 @@ public class MAIN {
 
         // Objetos que guardan los datos del programa mientras se ejecuta
         GESTORUSUARIOS gestorUsuarios = new GESTORUSUARIOS();
+        CATALOGOSERVICIOS catalogoServicios = new CATALOGOSERVICIOS();
 
         // Llamada a método de la clase MENU para mostrar mensaje de bienvenida
         MENU.mostrarBienvenida();
@@ -37,13 +38,59 @@ public class MAIN {
         // El menu principal solo se muestra si el inicio de sesion fue exitoso
         if (usuarioActivo != null) {
             boolean rep = true;
+            catalogoServicios.cargarServicios();  // Carga los servicios del sistema
 
             while (rep) {
                 String opcion = MENU.mostrarMenuPrincipal(usuarioActivo);
 
                 switch (opcion) {
                     case "1":
-                        // Seleccionar servicios
+                        // Selección de categorías
+                        String categoria;
+                        int categoriaInt = 0;
+                        // Selección de servicios ('servicioInt' NO USADO AUN)
+                        String servicio;
+                        int servicioInt = 0;
+                        boolean repServicio1 = true;
+                        boolean repServicio2 = true;
+                        
+                        String listaCategorias = catalogoServicios.mostrarCategorias();
+                        
+                        while (repServicio1) {
+                            categoria = MENU.pedirDato(listaCategorias);
+                            
+                            // Validar si 'categoria' es un string numérico
+                            switch (categoria) {
+                                case "1", "2", "3", "4", "5":
+                                    // Convertir 'categoria' a número entero (ver CATALOGOSERVICIO)
+                                    categoriaInt = Integer.parseInt(categoria);
+                                    repServicio1 = false;
+                                    break;
+                                default:
+                                    MENU.mostrarError();
+                            }
+                        }
+                        
+                        String listaServicios = catalogoServicios.mostrarServicios(categoriaInt);
+                        
+                        while (repServicio2) {
+                            servicio = MENU.pedirDato(listaServicios);
+                            
+                            // Validar si 'servicio' es un string numérico
+                            switch (servicio) {
+                                case "1", "2", "3":
+                                    // Convertir 'servicio' a número entero (ver CATALOGOSERVICIO)
+                                    servicioInt = Integer.parseInt(servicio);
+                                    repServicio2 = false;
+                                    break;
+                                default:
+                                    MENU.mostrarError();
+                            }
+                        }
+                        
+                        // TERMINAR DE IMPLEMENTAR seleccionarServicio() porque DEPENDE DE LA CLASE CARRITO:
+                        // catalogoServicios.seleccionarServicios(carrito);
+                        
                         break;
                     case "2":
                         // Seleccionar horarios
