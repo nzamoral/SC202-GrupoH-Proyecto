@@ -39,4 +39,10 @@ public class ESPECIALISTA {
         this.especialidad = especialidad;
     }
 
+    // Devuelve el nombre listo para mostrar en pantalla, por ejemplo "Esp. Laura Méndez"
+    // Lo usa SERVICIO dentro de mostrarInformacion() y mostrarLineaFactura()
+    public String mostrarNombre() {
+        return "Esp. " + nombre + " " + apellido;
+    }
+
 }

@@ -59,4 +59,17 @@ public class SERVICIO {
         this.especialista = especialista;
     }
 
+    // Texto de una sola línea para listas y para el carrito
+    // Ejemplo: "Radiofrecuencia | ₡35000 | Esp. Laura Méndez"
+    // El (int) quita los decimales del costo, porque los precios del catálogo son enteros
+    public String mostrarInformacion() {
+        return nombre + " | ₡" + (int) costo + " | " + especialista.mostrarNombre();
+    }
+
+    // Texto de una línea para la factura
+    // Ejemplo: "Radiofrecuencia (Esp. Laura Méndez) ........ ₡35000"
+    public String mostrarLineaFactura() {
+        return nombre + " (" + especialista.mostrarNombre() + ") ........ ₡" + (int) costo;
+    }
+
 }
