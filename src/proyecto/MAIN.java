@@ -1,5 +1,7 @@
 package proyecto;
 
+import javax.swing.JOptionPane;
+
 public class MAIN {
 
     public static void main(String[] args) {
@@ -7,6 +9,7 @@ public class MAIN {
         // Objetos que guardan los datos del programa mientras se ejecuta
         GESTORUSUARIOS gestorUsuarios = new GESTORUSUARIOS();
         CATALOGOSERVICIOS catalogoServicios = new CATALOGOSERVICIOS();
+        CARRITO carrito = new CARRITO();
 
         // Llamada a método de la clase MENU para mostrar mensaje de bienvenida
         MENU.mostrarBienvenida();
@@ -88,8 +91,9 @@ public class MAIN {
                             }
                         }
                         
-                        // TERMINAR DE IMPLEMENTAR seleccionarServicio() porque DEPENDE DE LA CLASE CARRITO:
-                        // catalogoServicios.seleccionarServicios(carrito);
+                        // Agrega el servicio elegido al carrito y avisa al usuario el resultado
+                        SERVICIO servicioElegido = catalogoServicios.getServicio(categoriaInt, servicioInt);
+                        JOptionPane.showMessageDialog(null, carrito.agregarServicio(servicioElegido));
                         
                         break;
                     case "2":
@@ -97,9 +101,16 @@ public class MAIN {
                         break;
                     case "3":
                         // Mostrar carrito
+                        carrito.gestionarCarrito();
                         break;
                     case "4":
                         // Mostrar factura
+                        if (carrito.estaVacio()) {
+                            JOptionPane.showMessageDialog(null, "Su carrito está vacío. Agregue servicios para generar la factura.");
+                        } else {
+                            FACTURA factura = new FACTURA(usuarioActivo, carrito);
+                            factura.confirmarCompra();
+                        }
                         break;
                     case "5":
                         MENU.mostrarDespedida(usuarioActivo);

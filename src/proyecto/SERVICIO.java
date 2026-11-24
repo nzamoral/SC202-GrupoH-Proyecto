@@ -66,8 +66,10 @@ public class SERVICIO {
         return servicioString;
     }
     
-    // Mostrar línea de factura (FALTA IMPLEMENTACION)
-    public void mostrarLineaFactura() {
-        return;
+    // Mostrar línea de factura
+    public String mostrarLineaFactura() {
+        String lineaString = nombre + "\n     " + especialista.mostrarNombre() + "  -  ₡" + String.format("%.2f", costo);
+
+        return lineaString;
     }
 }

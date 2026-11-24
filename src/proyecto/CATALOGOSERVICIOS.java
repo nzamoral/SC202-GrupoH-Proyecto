@@ -134,7 +134,14 @@ public class CATALOGOSERVICIOS {
         return serviciosString;
     }
     
-    // Seleccionar servicios (FALTA IMPLEMENTACIÓN PORQUE DEPENDE DE 'CARRITO')
+    // Retorna el servicio según la categoría y la posición dentro de la categoría (ambas de 1 a 5 y de 1 a 3, como las ve el usuario)
+    public SERVICIO getServicio(int indiceCategoria, int indiceServicio) {
+        int indice = ((indiceCategoria - 1) * cantidadServiciosPorCategoria) + (indiceServicio - 1);
+
+        return servicios[indice];
+    }
+
+    // Seleccionar servicios (sin uso: la selección se hace en MAIN con getServicio() y CARRITO.agregarServicio())
     public void seleccionarServicios(CARRITO carrito) {
         // Código...
         return;
