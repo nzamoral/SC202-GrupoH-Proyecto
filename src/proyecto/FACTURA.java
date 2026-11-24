@@ -14,14 +14,16 @@ public class FACTURA {
     private String fecha;
     private USUARIO usuario;
     private CARRITO carrito;
+    private HORARIO horario;
 
     // Constructor
-    public FACTURA(USUARIO usuario, CARRITO carrito) {
+    public FACTURA(USUARIO usuario, CARRITO carrito, HORARIO horario) {
         contadorFacturas++;
         this.numero = contadorFacturas;
         this.fecha = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.usuario = usuario;
         this.carrito = carrito;
+        this.horario = horario;
     }
 
     // Getters
@@ -49,6 +51,7 @@ public class FACTURA {
                 + "Cliente: " + usuario.getNombreCompleto() + "\n"
                 + "Cédula: " + usuario.getCedula() + "\n"
                 + "Teléfono: " + usuario.getTelefono() + "\n"
+                + "Cita: " + horario.mostrarCita() + "\n"
                 + "------------------------------------------\n";
 
         for (int i = 0; i < carrito.getCantidadServicios(); i++) {
@@ -85,6 +88,7 @@ public class FACTURA {
                     confirmada = true;
                     rep = false;
                     carrito.vaciar();
+                    horario.confirmarReserva();
                     JOptionPane.showMessageDialog(null, "¡Compra confirmada! Factura #" + String.format("%04d", numero)
                             + "\nGracias por preferir " + MENU.obtenerNombreApp() + ".");
                     break;

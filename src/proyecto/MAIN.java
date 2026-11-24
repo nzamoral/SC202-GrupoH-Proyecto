@@ -10,6 +10,7 @@ public class MAIN {
         GESTORUSUARIOS gestorUsuarios = new GESTORUSUARIOS();
         CATALOGOSERVICIOS catalogoServicios = new CATALOGOSERVICIOS();
         CARRITO carrito = new CARRITO();
+        HORARIO horario = new HORARIO();
 
         // Llamada a método de la clase MENU para mostrar mensaje de bienvenida
         MENU.mostrarBienvenida();
@@ -98,6 +99,7 @@ public class MAIN {
                         break;
                     case "2":
                         // Seleccionar horarios
+                        horario.seleccionarHorario();
                         break;
                     case "3":
                         // Mostrar carrito
@@ -107,8 +109,10 @@ public class MAIN {
                         // Mostrar factura
                         if (carrito.estaVacio()) {
                             JOptionPane.showMessageDialog(null, "Su carrito está vacío. Agregue servicios para generar la factura.");
+                        } else if (!horario.estaDefinido()) {
+                            JOptionPane.showMessageDialog(null, "Primero seleccione un horario para su cita (opción 2 del menú).");
                         } else {
-                            FACTURA factura = new FACTURA(usuarioActivo, carrito);
+                            FACTURA factura = new FACTURA(usuarioActivo, carrito, horario);
                             factura.confirmarCompra();
                         }
                         break;
