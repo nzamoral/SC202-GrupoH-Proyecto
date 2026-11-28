@@ -74,5 +74,4 @@ public class MENU {
     public static void mostrarError() {
         JOptionPane.showMessageDialog(null, "Opción no válida, intente nuevamente.");
     }
-
 }
